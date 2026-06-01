@@ -46,7 +46,7 @@ export function Quiz({ questions, onFinish, onQuit }: QuizProps) {
   };
 
   const getOptionStyles = (option: string) => {
-    const base = "py-5 px-6 rounded-2xl border-2 text-left flex items-center justify-between font-semibold text-lg transition-all ";
+    const base = "py-4 px-4 sm:py-5 sm:px-6 rounded-xl sm:rounded-2xl border-2 text-left flex items-center justify-between font-semibold transition-all ";
     if (!isAnswered) {
       return base + "border-slate-100 bg-slate-50 text-slate-600 hover:border-indigo-300 group";
     }
@@ -102,8 +102,8 @@ export function Quiz({ questions, onFinish, onQuit }: QuizProps) {
             exit={{ opacity: 0, x: -20 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
           >
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-800 leading-tight mb-2">Назовите столицу:</h2>
-            <h1 className="text-4xl sm:text-6xl font-black text-indigo-600 mb-10 tracking-tight">
+            <h2 className="text-lg sm:text-2xl font-extrabold text-slate-800 leading-tight mb-2">Назовите столицу:</h2>
+            <h1 className="text-3xl sm:text-6xl font-black text-indigo-600 mb-8 sm:mb-10 tracking-tight">
               {currentQuestion.country}
             </h1>
 
@@ -115,7 +115,7 @@ export function Quiz({ questions, onFinish, onQuit }: QuizProps) {
                   disabled={isAnswered}
                   className={getOptionStyles(option)}
                 >
-                  <span className="truncate mr-4">{option}</span>
+                  <span className="truncate mr-3 text-base sm:text-lg">{option}</span>
                   
                   {isAnswered && option === currentQuestion.correctCapital && (
                     <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
@@ -145,7 +145,7 @@ export function Quiz({ questions, onFinish, onQuit }: QuizProps) {
           >
             <button
               onClick={handleNext}
-              className="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 flex items-center gap-2 transition-all"
+              className="w-full sm:w-auto bg-indigo-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 flex items-center justify-center gap-2 transition-all mt-4 sm:mt-0"
             >
               {currentIndex < questions.length - 1 ? 'Следующий вопрос' : 'Показать результаты'}
               <ArrowRight className="w-5 h-5" />

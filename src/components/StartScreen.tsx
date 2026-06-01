@@ -61,3 +61,4 @@ export function StartScreen({ onStart }: StartScreenProps) {
     </motion.div>
   );
 }
+

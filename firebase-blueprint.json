@@ -1,0 +1,25 @@
+{
+  "entities": {
+    "Result": {
+      "title": "Quiz Result",
+      "description": "A student's result for the ALL COUNTRIES test.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Auth UID" },
+        "studentName": { "type": "string", "description": "Student's specified name" },
+        "score": { "type": "number" },
+        "mistakes": { "type": "number" },
+        "grade": { "type": "number", "description": "2, 3, 4, or 5" },
+        "timeTakenMs": { "type": "number" },
+        "createdAt": { "type": "number", "description": "Server timestamp" }
+      },
+      "required": ["userId", "studentName", "score", "mistakes", "grade", "createdAt"]
+    }
+  },
+  "firestore": {
+    "results": {
+      "schema": "Result",
+      "description": "Store all student results for the master quiz test."
+    }
+  }
+}

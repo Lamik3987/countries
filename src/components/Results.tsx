@@ -12,20 +12,29 @@ export function Results({ answers, onRestart }: ResultsProps) {
   const totalCount = answers.length;
   const percentage = Math.round((correctCount / totalCount) * 100);
 
+  const calculateGrade = (pct: number) => {
+    if (pct >= 85) return 5;
+    if (pct >= 70) return 4;
+    if (pct >= 50) return 3;
+    return 2;
+  };
+
+  const grade = calculateGrade(percentage);
+
   let ratingMessage = "";
   let badgeColor = "";
 
-  if (percentage === 100) {
-    ratingMessage = "Гуру географии! Идеально!";
-    badgeColor = "text-yellow-600 bg-yellow-50 border-yellow-200";
-  } else if (percentage >= 80) {
-    ratingMessage = "Отличный знаток географии!";
+  if (grade === 5) {
+    ratingMessage = "Отлично! (Оценка: 5)";
     badgeColor = "text-emerald-700 bg-emerald-50 border-emerald-200";
-  } else if (percentage >= 50) {
-    ratingMessage = "Хороший результат, но есть куда расти.";
+  } else if (grade === 4) {
+    ratingMessage = "Хорошо! (Оценка: 4)";
     badgeColor = "text-indigo-600 bg-indigo-50 border-indigo-200";
+  } else if (grade === 3) {
+    ratingMessage = "Удовлетворительно. (Оценка: 3)";
+    badgeColor = "text-yellow-600 bg-yellow-50 border-yellow-200";
   } else {
-    ratingMessage = "Нужно больше путешествовать и изучать карту!";
+    ratingMessage = "Неудовлетворительно. (Оценка: 2)";
     badgeColor = "text-rose-600 bg-rose-50 border-rose-200";
   }
 
@@ -38,22 +47,23 @@ export function Results({ answers, onRestart }: ResultsProps) {
       className="w-full max-w-3xl mx-auto pb-12"
     >
       <div className="bg-white rounded-[2rem] shadow-2xl shadow-slate-200/50 border border-white p-8 sm:p-12 text-center mb-8">
+        
         <motion.div 
           initial={{ scale: 0 }} 
           animate={{ scale: 1 }} 
           transition={{ type: "spring", delay: 0.2 }}
-          className="w-32 h-32 mx-auto bg-indigo-50 rounded-full flex items-center justify-center mb-6 border-4 border-indigo-100 shadow-inner"
+          className="w-24 h-24 sm:w-32 sm:h-32 mx-auto bg-indigo-50 rounded-full flex items-center justify-center mb-6 border-4 border-indigo-100 shadow-inner"
         >
-          <span className="text-4xl font-display font-black text-indigo-600">
+          <span className="text-3xl sm:text-4xl font-display font-black text-indigo-600">
             {correctCount}/{totalCount}
           </span>
         </motion.div>
         
-        <h2 className="text-3xl font-display font-extrabold text-slate-800 mb-4">Тест завершён!</h2>
-        <div className={`inline-block px-4 py-2 rounded-full border ${badgeColor} mb-8 font-medium`}>
+        <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-800 mb-4">Тест завершён!</h2>
+        <div className={`inline-block px-4 py-2 rounded-full border ${badgeColor} mb-8 font-medium text-sm sm:text-base`}>
           {ratingMessage}
         </div>
-
+        
         <button
           onClick={onRestart}
           className="flex items-center justify-center gap-2 bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all mx-auto w-full sm:w-auto"
@@ -63,7 +73,7 @@ export function Results({ answers, onRestart }: ResultsProps) {
         </button>
       </div>
 
-      <div className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/40 border border-slate-100 p-6 sm:p-10">
+      <div className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/40 border border-slate-100 p-6 sm:p-10 mb-8 sm:mb-0">
         <h3 className="text-2xl font-display font-extrabold text-slate-800 mb-6">Сводка ответов</h3>
         
         <div className="flex flex-col gap-4">
@@ -106,3 +116,4 @@ export function Results({ answers, onRestart }: ResultsProps) {
     </motion.div>
   );
 }
+
