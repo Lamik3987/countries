@@ -1,0 +1,6 @@
+{
+  "name": "Столицы Евразии - Квиз",
+  "description": "Стильный квиз по столицам Западной Европы и Западной Азии с анимациями и рейтинговой системой.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
